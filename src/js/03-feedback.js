@@ -16,13 +16,15 @@ form.addEventListener(
 );
 checkStorage();
 form.addEventListener('submit', evt => {
-  evt.preventDefault();
   checkStorage();
+  evt.preventDefault();
   evt.target.reset();
 });
 function checkStorage() {
-  const getStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
+  let getStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
+  console.log(getStorage.email);
   if (getStorage.email === '' || getStorage.message === '') {
+    alert('Please fill the form');
     return;
   }
   email.value = getStorage.email;

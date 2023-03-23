@@ -3,7 +3,6 @@ const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 const dataTime = data => {
   localStorage.setItem('videoplayer-current-time', data);
-  console.log(data);
 };
 var throttle = require('lodash.throttle');
 player.on(
