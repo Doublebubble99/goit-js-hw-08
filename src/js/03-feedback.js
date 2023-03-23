@@ -22,7 +22,6 @@ form.addEventListener('submit', evt => {
 });
 function checkStorage() {
   let getStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
-  console.log(getStorage.email);
   if (getStorage.email === '' || getStorage.message === '') {
     alert('Please fill the form');
     return;
