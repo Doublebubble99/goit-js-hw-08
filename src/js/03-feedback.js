@@ -7,8 +7,8 @@ form.addEventListener(
   'input',
   throttle(() => {
     let outputStore = {
-      email: email.value,
-      message: message.value,
+      email: email.value.trim(),
+      message: message.value.trim(),
     };
     const localData = JSON.stringify(outputStore);
     localStorage.setItem('feedback-form-state', localData);
@@ -16,17 +16,26 @@ form.addEventListener(
 );
 checkStorage();
 form.addEventListener('submit', evt => {
-  checkStorage();
   evt.preventDefault();
+  sendData();
   evt.target.reset();
 });
 function checkStorage() {
   let getStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
-  if (getStorage === null) {
-    alert('Please fill the form');
+  if (getStorage.email === '' || getStorage.message === '') {
     return;
   }
+  sendData();
+  dataStorage();
+}
+function sendData() {
+  let getStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
   email.value = getStorage.email;
   message.value = getStorage.message;
   console.log(getStorage);
+}
+function dataStorage() {
+  let getStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
+  email.value = getStorage.email;
+  message.value = getStorage.message;
 }
